@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
 
 class SignupPage extends StatefulWidget {
   final VoidCallback onSignupComplete;
@@ -20,9 +23,26 @@ class _SignupPageState extends State<SignupPage> {
   Future<void> _saveSignup() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('signed_up', true);
-    // Tu peux aussi sauvegarder les infos ici si besoin
+
+    final userData = {
+      'email': _mailController.text,
+      'nom': _nameController.text,
+      'prenom': _surnameController.text,
+      'age': _ageController.text,
+      'ville': _cityController.text,
+      'date': DateTime.now().toIso8601String(),
+    };
+
+    // Chemin absolu vers le dossier 'data' à la racine du projet
+    final dir = Directory('data');
+    if (!await dir.exists()) {
+      await dir.create(recursive: true);
+    }
+    final file = File('data/user_data.json');
+    await file.writeAsString(jsonEncode(userData));
+
     widget.onSignupComplete();
-  }
+}
 
   @override
   Widget build(BuildContext context) {
