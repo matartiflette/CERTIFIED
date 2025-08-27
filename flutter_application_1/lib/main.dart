@@ -1,95 +1,66 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'signup_page.dart';
+// ...tes imports existants...
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool? _signedUp;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkSignup();
+  }
+
+  Future<void> _checkSignup() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _signedUp = prefs.getBool('signed_up') ?? false;
+    });
+  }
+
+  void _onSignupComplete() {
+    setState(() {
+      _signedUp = true;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    if (_signedUp == null) {
+      return const MaterialApp(home: Scaffold(body: Center(child: CircularProgressIndicator())));
+    }
     return MaterialApp(
       title: 'Bouton Top 1%',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const TopOnePercentPage(),
+      home: _signedUp!
+          ? const PlaceholderPage()
+          : SignupPage(onSignupComplete: _onSignupComplete),
     );
   }
-}
+} // <-- Fin de _MyAppState
 
-class TopOnePercentPage extends StatefulWidget {
-  const TopOnePercentPage({super.key});
+class PlaceholderPage extends StatelessWidget {
+  const PlaceholderPage({super.key});
 
-  @override
-  State<TopOnePercentPage> createState() => _TopOnePercentPageState();
-}
-
-class _TopOnePercentPageState extends State<TopOnePercentPage> {
-  String dropdownValue = 'Choix 1';
-
-// ...existing code...
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Top 1%'),
-      ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.deepPurple,
-              ),
-              child: Text(
-                'Menu',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
-              ),
-            ),
-            ListTile(
-              title: const Text('Choix 1'),
-              onTap: () {
-                setState(() {
-                  dropdownValue = 'Choix 1';
-                });
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Choix 2'),
-              onTap: () {
-                setState(() {
-                  dropdownValue = 'Choix 2';
-                });
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Choix 3'),
-              onTap: () {
-                setState(() {
-                  dropdownValue = 'Choix 3';
-                });
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            print('Bouton pressé !');
-          },
-          child: Text('Je paie 999 \$, je suis du top 1 % (${dropdownValue})'),
-        ),
-      ),
+      appBar: AppBar(title: const Text('Accueil')),
+      body: const Center(child: Text('Bienvenue !')),
     );
   }
 }
