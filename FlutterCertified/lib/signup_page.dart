@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'dart:io';
-import 'package:path_provider/path_provider.dart';
 
 class SignupPage extends StatefulWidget {
   final VoidCallback onSignupComplete;
@@ -42,7 +41,7 @@ class _SignupPageState extends State<SignupPage> {
     await file.writeAsString(jsonEncode(userData));
 
     widget.onSignupComplete();
-}
+  }
 
   @override
   Widget build(BuildContext context) {
