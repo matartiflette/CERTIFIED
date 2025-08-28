@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'dart:io';
-import 'package:path_provider/path_provider.dart';
+
 
 class SignupPage extends StatefulWidget {
   final VoidCallback onSignupComplete;
@@ -19,6 +19,7 @@ class _SignupPageState extends State<SignupPage> {
   final _surnameController = TextEditingController();
   final _ageController = TextEditingController();
   final _cityController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   Future<void> _saveSignup() async {
     final prefs = await SharedPreferences.getInstance();
@@ -30,6 +31,7 @@ class _SignupPageState extends State<SignupPage> {
       'prenom': _surnameController.text,
       'age': _ageController.text,
       'ville': _cityController.text,
+      'motdepasse': _passwordController.text,
       'date': DateTime.now().toIso8601String(),
     };
 
@@ -78,6 +80,12 @@ class _SignupPageState extends State<SignupPage> {
               TextFormField(
                 controller: _cityController,
                 decoration: const InputDecoration(labelText: 'Ville'),
+                validator: (v) => v!.isEmpty ? 'Champ requis' : null,
+              ),
+              TextFormField(
+                controller: _passwordController,
+                decoration: const InputDecoration(labelText: 'Mot de passe'),
+                obscureText: true,
                 validator: (v) => v!.isEmpty ? 'Champ requis' : null,
               ),
               const SizedBox(height: 24),
