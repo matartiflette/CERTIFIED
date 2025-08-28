@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'signup_page.dart';
-// ...tes imports existants...
+import 'dart:io';
+
 
 void main() {
   runApp(const MyApp());
@@ -14,6 +14,8 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
+// vérification de l'inscription (si le client c'est déja connecté)
+// Pour test supprimer le dossier data/user_data.json
 class _MyAppState extends State<MyApp> {
   bool? _signedUp;
 
@@ -24,9 +26,9 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> _checkSignup() async {
-    final prefs = await SharedPreferences.getInstance();
+    final file = File('data/user_data.json');
     setState(() {
-      _signedUp = prefs.getBool('signed_up') ?? false;
+      _signedUp = file.existsSync();
     });
   }
 
@@ -35,7 +37,6 @@ class _MyAppState extends State<MyApp> {
       _signedUp = true;
     });
   }
-
   @override
   Widget build(BuildContext context) {
     if (_signedUp == null) {
