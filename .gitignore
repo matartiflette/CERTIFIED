@@ -1,22 +1,22 @@
 # Miscellaneous
-FlutterCertified/*.class
-FlutterCertified/*.log
-FlutterCertified/*.pyc
-FlutterCertified/*.swp
-FlutterCertified/.DS_Store
-FlutterCertified/.atom/
-FlutterCertified/.build/
-FlutterCertified/.buildlog/
-FlutterCertified/.history
-FlutterCertified/.svn/
-FlutterCertified/.swiftpm/
-FlutterCertified/migrate_working_dir/
+Flutter/*.class
+Flutter/*.log
+Flutter/*.pyc
+Flutter/*.swp
+Flutter/.DS_Store
+Flutter/.atom/
+Flutter/.build/
+Flutter/.buildlog/
+Flutter/.history
+Flutter/.svn/
+Flutter/.swiftpm/
+Flutter/migrate_working_dir/
 
 # IntelliJ related
-FlutterCertified/*.iml
-FlutterCertified/*.ipr
-FlutterCertified/*.iws
-FlutterCertified/.idea/
+Flutter/*.iml
+Flutter/*.ipr
+Flutter/*.iws
+Flutter/.idea/
 
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
@@ -26,20 +26,20 @@ FlutterCertified/.idea/
 # Flutter/Dart/Pub related
 **/doc/api/
 **/ios/Flutter/.last_build_id
-FlutterCertified/.dart_tool/
-FlutterCertified/.flutter-plugins-dependencies
-FlutterCertified/.pub-cache/
-FlutterCertified/.pub/
-FlutterCertified/build/
-FlutterCertified/coverage/
+Flutter/.dart_tool/
+Flutter/.flutter-plugins-dependencies
+Flutter/.pub-cache/
+Flutter/.pub/
+Flutter/build/
+Flutter/coverage/
 
 # Symbolication related
-FlutterCertified/app.*.symbols
+Flutter/app.*.symbols
 
 # Obfuscation related
-FlutterCertified/app.*.map.json
+Flutter/app.*.map.json
 
 # Android Studio will place build artifacts here
-FlutterCertified/android/app/debug
-FlutterCertified/android/app/profile
-FlutterCertified/android/app/release
+Flutter/android/app/debug
+Flutter/android/app/profile
+Flutter/android/app/release

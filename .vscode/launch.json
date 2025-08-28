@@ -5,23 +5,26 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "CertifiedFlutter",
-      "cwd": "CertifiedFlutter",
-      "request": "launch",
-      "type": "dart"
-    },
-    {
-      "name": "CertifiedFlutter (profile mode)",
-      "cwd": "CertifiedFlutter",
+      "name": "Certfied",
+      "cwd": "Flutter",
       "request": "launch",
       "type": "dart",
+      "program": "lib/main.dart"
+    },
+    {
+      "name": "Certfied (profile mode)",
+      "cwd": "Flutter",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
       "flutterMode": "profile"
     },
     {
-      "name": "CertifiedFlutter (release mode)",
-      "cwd": "CertifiedFlutter",
+      "name": "Certfied (release mode)",
+      "cwd": "Flutter",
       "request": "launch",
       "type": "dart",
+      "program": "lib/main.dart",
       "flutterMode": "release"
     }
   ]
