@@ -40,7 +40,7 @@ class CertifiedApp extends StatelessWidget {
     final base = ThemeData(brightness: Brightness.light, useMaterial3: true);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Certified',
+      title: 'EgoNet',
       theme: base.copyWith(
         scaffoldBackgroundColor: Colors.white,
         colorScheme: base.colorScheme.copyWith(
@@ -138,7 +138,20 @@ class HomePage extends StatelessWidget {
         centerTitle: false,
         title: Row(
           children: [
-            const Icon(Icons.shield, size: 20, color: Colors.black),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey.shade300),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Image.asset(
+                  'assets/images/logo.png', // image transparente ajoutée dans assets
+                  height: 40,
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ),
             const SizedBox(width: 8),
             Text(
               'Certified',
@@ -220,17 +233,20 @@ class _AuthPageState extends State<AuthPage>
                   // Logo + tagline
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
+
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                          color: Colors.black,
+                          border: Border.all(color: Colors.grey.shade300),
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        padding: const EdgeInsets.all(10),
-                        child: const Icon(
-                          Icons.shield,
-                          color: Colors.white,
-                          size: 22,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Image.asset(
+                            'assets/images/logo.png', // image transparente ajoutée dans assets
+                            height: 40,
+                            fit: BoxFit.contain,
+                          ),
                         ),
                       ),
                       const SizedBox(width: 12),
@@ -263,11 +279,25 @@ class _AuthPageState extends State<AuthPage>
                       unselectedLabelColor: Colors.black,
                       indicator: BoxDecoration(
                         color: Colors.black,
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(10),
                       ),
                       tabs: const [
-                        Tab(text: 'Connexion'),
-                        Tab(text: 'Créer un compte'),
+                        Tab(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0,
+                            ),
+                            child: Text('Connexion'),
+                          ),
+                        ),
+                        Tab(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0,
+                            ),
+                            child: Text('Créer un compte'),
+                          ),
+                        ),
                       ],
                     ),
                   ),
