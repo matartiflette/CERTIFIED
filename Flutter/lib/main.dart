@@ -27,20 +27,20 @@ Future<void> main() async {
       autoRefreshToken: true,
     ),
   );
-  runApp(const EgoNetApp());
+  runApp(const CertifiedApp());
 }
 
 final supabase = Supabase.instance.client;
 
-class EgoNetApp extends StatelessWidget {
-  const EgoNetApp({super.key});
+class CertifiedApp extends StatelessWidget {
+  const CertifiedApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     final base = ThemeData(brightness: Brightness.light, useMaterial3: true);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'EgoNet',
+      title: 'Certified',
       theme: base.copyWith(
         scaffoldBackgroundColor: Colors.white,
         colorScheme: base.colorScheme.copyWith(
@@ -141,7 +141,7 @@ class HomePage extends StatelessWidget {
             const Icon(Icons.shield, size: 20, color: Colors.black),
             const SizedBox(width: 8),
             Text(
-              'EgoNet',
+              'Certified',
               style: Theme.of(
                 context,
               ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
@@ -238,7 +238,7 @@ class _AuthPageState extends State<AuthPage>
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'EgoNet',
+                            'Certified',
                             style: Theme.of(context).textTheme.headlineSmall
                                 ?.copyWith(fontWeight: FontWeight.w800),
                           ),
